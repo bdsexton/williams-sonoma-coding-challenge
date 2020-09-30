@@ -4,7 +4,12 @@ This is my solution to a coding challenge from Williams Sonoma.
 
 ## Data Source
 
-The specified [data feed](https://www.westelm.com/services/catalog/v4/category/shop/new/all-new/index.json) is served without an Access-Control-Allow-Origin response header, so I'm caching a copy of it on GitHub, which supposedly does send the header for JSON files and should thus allow me to load it without Cross-Origin Resource Sharing (CORS) errors.
+The specified [data feed](https://www.westelm.com/services/catalog/v4/category/shop/new/all-new/index.json) is served without an Access-Control-Allow-Origin response header, so I have cached it on GitHub, which does send the header for JSON files and should thus allow me to load it without Cross-Origin Resource Sharing (CORS) errors.
+
+To enable [deployment](https://bdsexton.github.io/williams-sonoma-coding-challenge/_assets/data/products.json) via GitHub Pages there is a copy of the data feed file in both the <code>source</code> directory and the <code>docs</code> directory.
+
+* [source/_assets/data/products.json](https://github.com/bdsexton/williams-sonoma-coding-challenge/blob/master/source/_assets/data/products.json)
+* [docs/_assets/data/products.json](https://github.com/bdsexton/williams-sonoma-coding-challenge/blob/master/docs/_assets/data/products.json)
 
 ## Resources
 
