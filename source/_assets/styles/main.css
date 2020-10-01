@@ -218,7 +218,7 @@ body > footer
 	text-decoration: none
 }
 
-.personal-links a:active,
+.personal-links li a:active,
 .personal-links li:first-child a:active /* hopefully temporary dirty nasty hack */
 {
 	background-color: #000;
