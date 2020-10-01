@@ -28,7 +28,9 @@
 				<li><strong>Working:</strong> prompting the user to manually select a local file then using that - This works well enough for development purposes, but I don't think it is the best solution for the challenge.</li>
 				<li><strong>Work in Progress:</strong> automatically loading a cache of the orignal feed from a differnet server - I have saved a cache of the feed to the <a href="https://github.com/bdsexton/williams-sonoma-coding-challenge" title="GitHub - bdsexton/williams-sonoma-coding-challenge: This is my solution to a coding challenge from Williams Sonoma.">GitHub repository</a> for my challenge solution. It should appear both in the repo and in the published site.</li>
 			</ul>
-			<p><input type="file" accept=".json" id="file-input"></p>
+			<form id="file-input-form">
+				<p><input type="file" accept=".json" id="file-input"><input type="reset" id="file-input-reset"></p>
+			</form>
 			<pre id="raw-data">Loading…</pre>
 		</section>
 	</main>
@@ -40,5 +42,6 @@
 			<li><a href="https://brian.works/resume">Résumé and Supplemental Documents</a></li>
 		</ul>
 	</footer>
+	<script src="./_assets/scripts/main.js"></script>
 </body>
 </html>
