@@ -4,7 +4,7 @@ This is my solution to a coding challenge from Williams Sonoma. You can view the
 
 ## Data Source
 
-The specified [data feed](https://www.westelm.com/services/catalog/v4/category/shop/new/all-new/index.json) is served without an Access-Control-Allow-Origin response header, so I have cached it on GitHub, which does send the header for JSON files and should thus allow me to load it without Cross-Origin Resource Sharing (CORS) errors.
+The [product data feed](https://www.westelm.com/services/catalog/v4/category/shop/new/all-new/index.json) specified in the project brief is served without an Access-Control-Allow-Origin response header, so it cannot be used directly per Cross-Origin Resource Sharing (CORS) restrictions. As a work-around, I have cached the feed data as a static file in the [project repository](https://github.com/bdsexton/williams-sonoma-coding-challenge/) and deployed the app via GitHub Pages, which does send the necessary header.
 
 To enable [deployment](https://bdsexton.github.io/williams-sonoma-coding-challenge/_assets/data/products.json) via GitHub Pages there is a copy of the data feed file in both the <code>source</code> directory and the <code>docs</code> directory.
 
