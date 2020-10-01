@@ -1,0 +1,25 @@
+{
+  "name": "williams-sonoma-coding-challenge",
+  "version": "1.0.0",
+  "description": "Brian Sexton's solution to a coding challenge from Williams Sonoma.",
+  "main": "source/index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bdsexton/williams-sonoma-coding-challenge.git"
+  },
+  "author": {
+    "name": "Brian Sexton",
+    "url": "https://briansexton.com/"
+  },
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/bdsexton/williams-sonoma-coding-challenge/issues"
+  },
+  "homepage": "https://github.com/bdsexton/williams-sonoma-coding-challenge#readme"
+}
