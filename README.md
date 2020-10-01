@@ -1,6 +1,6 @@
 # Williams Sonoma Coding Challenge
 
-This is my solution to a coding challenge from Williams Sonoma.
+This is my solution to a coding challenge from Williams Sonoma. You can view the [live demo](https://bdsexton.github.io/williams-sonoma-coding-challenge/) or download the code to pick apart and run at your leisure.
 
 ## Data Source
 
