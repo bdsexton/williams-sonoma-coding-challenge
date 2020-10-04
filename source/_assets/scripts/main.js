@@ -37,7 +37,44 @@ var productData;
 
 var resetButton = document.getElementById('file-input-reset');
 
-if (isModernBrowser()) {
+class Utilities {
+
+	static isModernBrowser() {
+
+		/*
+			For the purposes of this challenge, I'm just testing for a few
+			specific things, but one might want to do things a bit differently
+			for a production site (e.g., to better support old browsers). My
+			tests and assumptions are as follows:
+	
+				• globalThis: Anything that supports globalThis is fairly
+				  recent.
+				• window: Anything that supports the window object is a browser
+				  or a browser-like app.
+				• JSON and window.fetch: JSON object and fetch API support may
+				  be safe to assume from the above, but let's be sure.
+	
+			Feature Support Reference:
+				https://www.caniuse.com/mdn-javascript_builtins_globalthis
+				https://www.caniuse.com/json
+				https://www.caniuse.com/fetch
+		*/
+	
+		if (!globalThis || !window || !window.fetch) {
+	
+			return false;
+		}
+	
+		return true;
+	}
+
+	static formatPrice(price) {
+
+		return new Intl.NumberFormat('us-EN', {style: 'currency', currency: 'USD'}).format(price);
+	}
+}
+
+if (Utilities.isModernBrowser()) {
 
 	// Note: This will not fire without a change, even if clearRawJSON() has
 	// been called, so subsequent attempts to load the current file won't work.
@@ -105,7 +142,7 @@ function displayProductInfo(data) {
 	idElement.textContent = data.id;
 	nameElement.textContent = data.name;
 	infoElement.textContent = 'number of images: ' + data.images.length;
-	priceElement.textContent = 'regularly ' + formatPrice(data.price.regular) + ', currently ' + formatPrice(data.price.selling) + ', ' + data.price.type;
+	priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.price.regular) + ', currently ' + Utilities.formatPrice(data.price.selling) + ', ' + data.price.type;
 	productURLElement.textContent = data.links.www;
 
 	// TODO: Check whether any images actually exist then respond accordingly.
@@ -155,13 +192,6 @@ function displayRawJSON(json) {
 	}
 }
 
-function formatPrice(price) {
-
-	let numberFormat = new Intl.NumberFormat('us-EN', {style: 'currency', currency: 'USD'});
-
-	return numberFormat.format(price);
-}
-
 function handleFileInput(event) {
 
 	console.log('[handleFileInput] FileList length: ' + event.target.files.length);
@@ -175,34 +205,6 @@ function handleFileInput(event) {
 
 		readFile(event.target.files[0]);
 	}
-}
-
-function isModernBrowser() {
-
-	/*
-		For the purposes of this challenge, I'm just testing for a few specific
-		things, but one might want to do things a bit differently for a
-		production site (e.g., to better support old browsers). My tests and
-		assumptions are as follows:
-
-			• globalThis: Anything that supports globalThis is fairly recent.
-			• window: Anything that supports the window object is a browser or a
-			  browser-like app.
-			• JSON and window.fetch: JSON object and fetch API support may be
-			  safe to assume from the above, but let's be sure.
-
-		Feature Support Reference:
-			https://www.caniuse.com/mdn-javascript_builtins_globalthis
-			https://www.caniuse.com/json
-			https://www.caniuse.com/fetch
-	*/
-
-	if (!globalThis || !window || !window.fetch) {
-
-		return false;
-	}
-
-	return true;
 }
 
 async function loadFeed(url) {
