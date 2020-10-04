@@ -15,6 +15,10 @@
 
 \*============================================================================*/
 
+/*----------------------------------------------------------------------------*\
+	General
+\*----------------------------------------------------------------------------*/
+
 :root
 {
 	background: #fff;
@@ -35,6 +39,12 @@ body
 	margin: 0
 }
 
+h1, h2, h3
+{
+	font-family: 'Abril Fatface', serif;
+	font-weight: 700
+}
+
 a:link, a:visited
 {
 	text-decoration: none
@@ -45,13 +55,17 @@ a:hover, a:active
 	text-decoration: underline
 }
 
+/*----------------------------------------------------------------------------*\
+	Page Header
+\*----------------------------------------------------------------------------*/
+
 body > header
 {
 	background: #777 url(https://source.unsplash.com/Ein9Zv7PXBw/640x320) center center/cover;
 
 	color: #fff;
 
-	padding: 2em;
+	padding: 2rem;
 
 	box-sizing: border-box;
 
@@ -66,7 +80,7 @@ body > header
 		background-image: url(https://source.unsplash.com/Ein9Zv7PXBw/768x320);
 
 		/* 320px / 16px = 20 */
-		min-height: 20em;
+		min-height: 20rem;
 
 		display: flex;
 		flex-direction: column;
@@ -98,18 +112,16 @@ body > header
 	}
 }
 
-h1, h2, h3
+body > header > h1
 {
-	font-family: 'Abril Fatface', serif;
-	font-weight: 700
-}
-
-h1
-{
-	font-size: 3em;
+	font-size: 3rem;
 
 	margin: 0
 }
+
+/*-----------------------------------------------------------------------------\
+	Content
+\-----------------------------------------------------------------------------*/
 
 main
 {
@@ -118,7 +130,7 @@ main
 
 	flex: 1;
 
-	padding: 1em
+	padding: 1rem
 }
 
 main > section
@@ -137,20 +149,24 @@ main > section
 #raw-data
 {
 	border: 1px solid #777;
-	border-radius: 0.25em;
+	border-radius: 0.25rem;
 
 	background-color: #eee;
 
-	padding: 1em;
+	padding: 1rem;
 
 	white-space: pre-wrap;
 
-	max-height: 20em;
+	max-height: 20rem;
 
 	overflow: scroll;
 
 	margin: 0
 }
+
+/*----------------------------------------------------------------------------*\
+	Page Footer
+\*----------------------------------------------------------------------------*/
 
 body > footer
 {
