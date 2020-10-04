@@ -154,6 +154,42 @@ main > section
 	margin: auto
 }
 
+#product-browser > .product
+{
+	border: 1px solid #777;
+	border-radius: 0.25rem;
+
+	background-color: #eee;
+
+	padding: 1rem;
+
+	margin: 1rem 0 0 0
+}
+
+#product-browser > .product img
+{
+	display: block;
+
+	margin: 0
+}
+
+#product-browser > .product .product-images
+{
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+
+	list-style-type: none;
+
+	padding: 0
+}
+
+#product-browser > .product .product-images li img
+{
+	width: 100%;
+	height: auto
+}
+
 #raw-data
 {
 	border: 1px solid #777;

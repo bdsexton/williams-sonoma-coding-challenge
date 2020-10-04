@@ -17,6 +17,20 @@
 			<h2>Plain JavaScript</h2>
 			<p>A simple problem deserves a simple solution, so here is a plain JavaScript solution&mdash;no framework required.</p>
 		</section>
+		<section id="product-browser">
+			<h3>Product Browser</h3>
+			<template>
+				<div class="product">
+					<img class="product-image">
+					<p class="product-info"></p>
+					<ul class="product-images"></ul>
+					<h4 class="product-name"></h4>
+					<p class="product-id"></p>
+					<p class="product-price"></p>
+					<p class="product-url"></p>
+				</div>
+			</template>
+		</section>
 		<section>
 			<h3>Product Data Feed</h3>
 			<p>The <a href="https://www.westelm.com/services/catalog/v4/category/shop/new/all-new/index.json">product data feed</a> specified in the project brief is served without an Access-Control-Allow-Origin response header, so it cannot be used directly per Cross-Origin Resource Sharing (CORS) restrictions. As a work-around, I have cached the feed data as a static file in the <a href="https://github.com/bdsexton/williams-sonoma-coding-challenge/">project repository</a> and <a href="https://bdsexton.github.io/williams-sonoma-coding-challenge/">deployed the app</a> via GitHub Pages, which does send the necessary header.</p>

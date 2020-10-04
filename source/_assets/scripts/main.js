@@ -24,6 +24,8 @@
 
 // TODO: Consider encapsulation.
 
+// TODO: Consider adding tests to isModernBrowser, including testing for HTML template element support.
+
 // Important: This must remain a fully qualified remote URL to work locally.
 const FEED_URL = 'https://bdsexton.github.io/williams-sonoma-coding-challenge/_assets/data/products.json';
 
@@ -52,9 +54,14 @@ if (isModernBrowser()) {
 
 		(json) => {
 
+			// The promise should already resolve to an object, so it should not
+			// be necessary to parse it manually.
 			productData = json;
 
 			displayRawJSON(json);
+
+			// Automatically display info about the first product.
+			displayProductInfo(productData.groups[0]);
 		}
 	);
 }
@@ -67,6 +74,59 @@ else {
 function clearRawJSON() {
 
 	document.getElementById('raw-data').textContent = '';
+}
+
+function displayProductInfo(data) {
+
+	// TODO: Consider passing a reference to all of the loaded data to facilitate easy navigation.
+
+	let productBrowser = document.getElementById('product-browser');
+
+	let template = productBrowser.querySelector('template');
+
+	let clone = template.content.cloneNode(true);
+
+	let idElement = clone.querySelector('.product-id');
+	let imageElement = clone.querySelector('.product-image');
+	let infoElement = clone.querySelector('.product-info');
+	let nameElement = clone.querySelector('.product-name');
+	let priceElement = clone.querySelector('.product-price');
+	let productImagesElement = clone.querySelector('.product-images');
+	let productURLElement = clone.querySelector('.product-url');
+
+	let imageListItem;
+	let listImage;
+
+	imageElement.setAttribute('src', data.hero.href);
+	imageElement.setAttribute('alt', data.alt || data.name);
+	imageElement.setAttribute('width', data.width);
+	imageElement.setAttribute('height', data.height);
+
+	idElement.textContent = data.id;
+	nameElement.textContent = data.name;
+	infoElement.textContent = 'number of images: ' + data.images.length;
+	priceElement.textContent = 'regularly ' + formatPrice(data.price.regular) + ', currently ' + formatPrice(data.price.selling) + ', ' + data.price.type;
+	productURLElement.textContent = data.links.www;
+
+	// TODO: Check whether any images actually exist then respond accordingly.
+
+	for (let i = 0; i < data.images.length; i++) {
+
+		imageListItem = document.createElement('li');
+
+		listImage = document.createElement('img');
+
+		listImage.setAttribute('src', data.images[i].href);
+		listImage.setAttribute('alt', data.images[i].alt || data.name);
+		listImage.setAttribute('width', data.images[i].width);
+		listImage.setAttribute('height', data.images[i].height);
+
+		imageListItem.appendChild(listImage);
+
+		productImagesElement.appendChild(imageListItem);
+	}
+
+	productBrowser.appendChild(clone);
 }
 
 function displayRawJSON(json) {
@@ -93,6 +153,13 @@ function displayRawJSON(json) {
 
 		document.getElementById('raw-data').textContent = 'Uh oh! There seems to be a problem with the data, so it could not be displayed. Sorry about that!';
 	}
+}
+
+function formatPrice(price) {
+
+	let numberFormat = new Intl.NumberFormat('us-EN', {style: 'currency', currency: 'USD'});
+
+	return numberFormat.format(price);
 }
 
 function handleFileInput(event) {
@@ -180,11 +247,16 @@ function readFile(file) {
 
 	reader.onload = function(event) {
 
-		// let json = event.target.result;
+		// The loaded file data should be a string, so parse it for the
+		// global cache.
+		productData = JSON.parse(event.target.result);
 
-		// productData = JSON.parse(json);
-
+		// Pass the unparsed data here because it's going to be displayed as a
+		// string anyway.
 		displayRawJSON(event.target.result);
+
+		// Automatically display info about the first product.
+		displayProductInfo(productData.groups[0]);
 	};
 
 	reader.readAsText(file);
