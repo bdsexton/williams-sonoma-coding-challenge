@@ -61,26 +61,23 @@ a:hover, a:active
 
 body > header
 {
-	background: #777 url(https://source.unsplash.com/Ein9Zv7PXBw/640x320) center center/cover;
+	background: #777 url(../images/backdrops/vineyard-horizon-640x250.jpg) center center / cover;
 
 	color: #fff;
-
-	padding: 2rem;
-
-	box-sizing: border-box;
 
 	text-align: center;
 	text-shadow: 1px 1px #000
 }
 
+/* TODO: Consider how best to eliminate unnecessary stretching between specified min-width values. Use max-width and work backwards instead? */
+
+/* TODO: Consider adding multiple densities. */
+
 @media all and (min-width: 768px)
 {
 	body > header
 	{
-		background-image: url(https://source.unsplash.com/Ein9Zv7PXBw/768x320);
-
-		/* 320px / 16px = 20 */
-		min-height: 20rem;
+		background-image: url(../images/backdrops/vineyard-horizon-768x250.jpg);
 
 		display: flex;
 		flex-direction: column;
@@ -92,7 +89,7 @@ body > header
 {
 	body > header
 	{
-		background-image: url(https://source.unsplash.com/Ein9Zv7PXBw/1024x320)
+		background-image: url(../images/backdrops/vineyard-horizon-1024x250.jpg)
 	}
 }
 
@@ -100,7 +97,7 @@ body > header
 {
 	body > header
 	{
-		background-image: url(https://source.unsplash.com/Ein9Zv7PXBw/1280x320)
+		background-image: url(../images/backdrops/vineyard-horizon-1280x250.jpg)
 	}
 }
 
@@ -108,13 +105,24 @@ body > header
 {
 	body > header
 	{
-		background-image: url(https://source.unsplash.com/Ein9Zv7PXBw/1920x320)
+		background-image: url(../images/backdrops/vineyard-horizon-1920x250.jpg)
 	}
 }
 
 body > header > h1
 {
 	font-size: 3rem;
+
+	padding: 0.5rem 0.75rem;
+
+	margin: 0
+}
+
+body > header > p
+{
+	background-color: rgba(0, 0, 0, 0.35);
+
+	padding: 0.5rem 0.75rem;
 
 	margin: 0
 }
