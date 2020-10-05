@@ -158,6 +158,15 @@ main > section
 	Content - Product Menu
 \*----------------------------------------------------------------------------*/
 
+/* Hide the section heading for screen and print, but NOT for speech. */
+@media screen, print
+{
+	#product-menu > h3
+	{
+		display: none
+	}
+}
+
 #product-menu > .products
 {
 	display: grid;
@@ -187,6 +196,15 @@ main > section
 /*----------------------------------------------------------------------------*\
 	Content - Product Browser
 \*----------------------------------------------------------------------------*/
+
+/* Hide the section heading for screen and print, but NOT for speech. */
+@media screen, print
+{
+	#product-browser > h3
+	{
+		display: none
+	}
+}
 
 #product-browser > .product
 {
