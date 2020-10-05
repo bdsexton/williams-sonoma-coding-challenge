@@ -61,11 +61,57 @@ class ProductGallery {
 
 					this.displayRawJSON(json);
 
-					// Automatically display info about the first product.
-					this.displayProductInfo(this.loadedData.groups[0]);
+					// Automatically show the product menu.
+					this.showProductMenu(this.loadedData.groups);
 				}
 			);
 		}
+	}
+
+	buildProductMenu(data) {
+
+		let productMenu = document.getElementById('product-menu');
+
+		let productList = productMenu.querySelector('.products');
+
+		let template = productList.querySelector('template');
+
+		data.forEach(product => {
+
+			let clone = template.content.cloneNode(true);
+
+			let imageElement = clone.querySelector('.product-image');
+
+			imageElement.setAttribute('src', product.hero.href);
+			imageElement.setAttribute('width', product.hero.width);
+			imageElement.setAttribute('height', product.hero.height);
+			imageElement.setAttribute('alt', product.alt || product.name);
+			imageElement.setAttribute('title', product.name);
+
+			imageElement.addEventListener('click', () => this.showProduct(product));
+
+			productList.appendChild(clone);
+		});
+	}
+
+	clearProductBrowser() {
+
+		let productElements = document.querySelectorAll('#product-browser .product');
+
+		productElements.forEach(element => {
+
+			element.parentElement.removeChild(element);
+		});
+	}
+
+	clearProductMenu() {
+
+		let productElements = document.querySelectorAll('#product-menu .products li');
+
+		productElements.forEach(element => {
+
+			element.parentElement.removeChild(element);
+		});
 	}
 
 	clearRawJSON() {
@@ -172,6 +218,18 @@ class ProductGallery {
 		this.reset();
 	}
 
+	hideProductMenu(clear) {
+
+		let productMenu = document.getElementById('product-menu');
+
+		if (clear === true) {
+
+			this.clearProductMenu();
+		}
+
+		productMenu.style.display = 'none';
+	}
+
 	async loadFeed(url) {
 
 		// Obviously, a production site should handle errors more elegantly and
@@ -222,8 +280,8 @@ class ProductGallery {
 			// string anyway.
 			this.displayRawJSON(event.target.result);
 	
-			// Automatically display info about the first product.
-			this.displayProductInfo(this.loadedData.groups[0]);
+			// Automatically show the product menu.
+			this.showProductMenu(this.loadedData.groups);
 		};
 	
 		reader.readAsText(file);
@@ -234,5 +292,30 @@ class ProductGallery {
 		this.loadedData = null;
 
 		this.clearRawJSON();
+
+		this.hideProductMenu(true);
+
+		this.clearProductBrowser();
+	}
+
+	showProduct(product) {
+
+		this.clearProductBrowser();
+
+		this.displayProductInfo(product);
+	}
+
+	showProductMenu(data) {
+
+		let productMenu = document.getElementById('product-menu');
+
+		let productElements = productMenu.querySelectorAll('.products > li');
+
+		if (productElements.length === 0) {
+
+			this.buildProductMenu(data);
+		}
+
+		productMenu.style.display = 'block';
 	}
 }
