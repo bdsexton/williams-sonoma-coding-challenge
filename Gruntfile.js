@@ -57,7 +57,9 @@ module.exports = function(grunt) {
 		terser: {
 			build: {
 				files: {
-					'docs/_assets/scripts/main.min.js': [
+					'docs/_assets/scripts/app.min.js': [
+						`${SOURCE_DIR}_assets/scripts/utilities.js`,
+						`${SOURCE_DIR}_assets/scripts/product-gallery.js`,
 						`${SOURCE_DIR}_assets/scripts/main.js`
 					]
 				}
@@ -77,11 +79,11 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('finalize-build', 'Apply finishing touches to complete the build.', function() {
 
-		updateFileNamesInHTML(`${BUILD_DIR}index.html`);
+		updateInclusionsInHTML(`${BUILD_DIR}index.html`);
 
 		restoreHeaderInCSS(`${SOURCE_DIR}_assets/styles/main.css`, `${BUILD_DIR}_assets/styles/main.min.css`);
 
-		restoreHeaderInJS(`${SOURCE_DIR}_assets/scripts/main.js`, `${BUILD_DIR}_assets/scripts/main.min.js`);
+		restoreHeaderInJS(`${SOURCE_DIR}_assets/scripts/main.js`, `${BUILD_DIR}_assets/scripts/app.min.js`);
 
 		// GitHub Pages runs Jekyll by default, but this app doesn't need Jekyll
 		// and Jekyll stops some files from being deployed, so disable it.
@@ -163,7 +165,7 @@ module.exports = function(grunt) {
 		return false;
 	}
 
-	function updateFileNamesInHTML(file) {
+	function updateInclusionsInHTML(file) {
 
 		let html;
 
@@ -173,7 +175,11 @@ module.exports = function(grunt) {
 
 		html = html.replace(/\bmain\.css\b/, 'main.min.css');
 
-		grunt.log.writeln(`Replacing main.js with main.min.js in ${file}.`);
+		grunt.log.writeln(`Removing utilities.js and product-gallery.js inclusions from ${file}.`);
+
+		html = html.replace(/<script\b.*?\b(?:utilities|product-gallery)\.js\b.*?<\/script>/gm, '');
+
+		grunt.log.writeln(`Replacing main.js with app.min.js in ${file}.`);
 
 		html = html.replace(/\bmain\.js\b/, 'main.min.js');
 
