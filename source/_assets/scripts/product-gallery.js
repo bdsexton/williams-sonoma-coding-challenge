@@ -24,27 +24,7 @@ class ProductGallery {
 
 		this.feedUrl = feedUrl;
 
-		this.fileInputElement = document.getElementById('file-input');
-
-		this.fileInputForm = document.getElementById('file-input-form');
-
 		this.loadedData;
-
-		this.resetButton = document.getElementById('file-input-reset');
-
-		// Add event listeners.
-
-		// Note: This will not fire without a change, so attempting to reload
-		// the current file won't work unless the input value is cleared first.
-		this.fileInputElement.addEventListener('change', (event) => {
-
-			this.handleFileInput(event);
-		});
-
-		this.resetButton.addEventListener('click', () => {
-
-			this.handleResetButtonClick();
-		});
 
 		// If a feed URL was provided, load that feed.
 
@@ -164,26 +144,6 @@ class ProductGallery {
 		productBrowser.appendChild(clone);
 	}
 
-	handleFileInput(event) {
-
-		console.log('[handleFileInput] FileList length: ' + event.target.files.length);
-	
-		if (event.target.files.length > 0) {
-	
-			// Read the first file. Ignore any others.
-	
-			// Note: There should never be more than one file unless someone has
-			// modified the HTML input element to allow multiple files.
-	
-			this.readFile(event.target.files[0]);
-		}
-	}
-
-	handleResetButtonClick() {
-
-		this.reset();
-	}
-
 	hideProductMenu(clear) {
 
 		let productMenu = document.getElementById('product-menu');
@@ -247,15 +207,6 @@ class ProductGallery {
 		};
 	
 		reader.readAsText(file);
-	}
-
-	reset() {
-
-		this.loadedData = null;
-
-		this.hideProductMenu(true);
-
-		this.clearProductBrowser();
 	}
 
 	showProduct(product) {
