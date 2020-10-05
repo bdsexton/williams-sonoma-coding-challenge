@@ -189,26 +189,6 @@ class ProductGallery {
 		}
 	}
 
-	readFile(file) {
-
-		// TODO: Consider testing for application/json or maybe just using try/catch.
-		// if (file.type !== 'application/json') {}
-	
-		let reader = new FileReader();
-	
-		reader.onload = (event) => {
-	
-			// The loaded file data should be a string, so parse it for the
-			// global cache.
-			this.loadedData = JSON.parse(event.target.result);
-		
-			// Automatically show the product menu.
-			this.showProductMenu(this.loadedData.groups);
-		};
-	
-		reader.readAsText(file);
-	}
-
 	showProduct(product) {
 
 		this.clearProductBrowser();
