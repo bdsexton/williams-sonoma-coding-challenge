@@ -34,9 +34,8 @@ class ProductGallery {
 
 		// Add event listeners.
 
-		// Note: This will not fire without a change, even if clearRawJSON() has
-		// been called, so multiple subsequent attempts to load the same file
-		// won't work.
+		// Note: This will not fire without a change, so attempting to reload
+		// the current file won't work unless the input value is cleared first.
 		this.fileInputElement.addEventListener('change', (event) => {
 
 			this.handleFileInput(event);
@@ -58,8 +57,6 @@ class ProductGallery {
 					// The promise should already resolve to an object, so it
 					// be should not necessary to parse it manually.
 					this.loadedData = json;
-
-					this.displayRawJSON(json);
 
 					// Automatically show the product menu.
 					this.showProductMenu(this.loadedData.groups);
@@ -114,11 +111,6 @@ class ProductGallery {
 		});
 	}
 
-	clearRawJSON() {
-
-		document.getElementById('raw-data').textContent = '';
-	}
-
 	displayProductInfo(data) {
 
 		// TODO: Consider passing a reference to all of the loaded data to facilitate easy navigation.
@@ -170,32 +162,6 @@ class ProductGallery {
 		}
 	
 		productBrowser.appendChild(clone);
-	}
-
-	displayRawJSON(json) {
-
-		// TODO: There could be some more robust JSON validation here.
-	
-		if (typeof json === 'string') {
-	
-			console.log('[displayRawJSON] String received. Displaying unaltered.');
-	
-			document.getElementById('raw-data').textContent = json;
-		}
-	
-		else if (typeof json === 'object') {
-	
-			// TODO: Handle failure, which could happen from objects that are not valid JSON.
-	
-			console.log('[displayRawJSON] Object received. Displaying stringified version.');
-	
-			document.getElementById('raw-data').textContent = JSON.stringify(json);
-		}
-	
-		else {
-	
-			document.getElementById('raw-data').textContent = 'Uh oh! There seems to be a problem with the data, so it could not be displayed. Sorry about that!';
-		}
 	}
 
 	handleFileInput(event) {
@@ -275,11 +241,7 @@ class ProductGallery {
 			// The loaded file data should be a string, so parse it for the
 			// global cache.
 			this.loadedData = JSON.parse(event.target.result);
-	
-			// Pass the unparsed data here because it's going to be displayed as a
-			// string anyway.
-			this.displayRawJSON(event.target.result);
-	
+		
 			// Automatically show the product menu.
 			this.showProductMenu(this.loadedData.groups);
 		};
@@ -290,8 +252,6 @@ class ProductGallery {
 	reset() {
 
 		this.loadedData = null;
-
-		this.clearRawJSON();
 
 		this.hideProductMenu(true);
 
