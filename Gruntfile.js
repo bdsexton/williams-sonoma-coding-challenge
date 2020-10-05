@@ -181,7 +181,7 @@ module.exports = function(grunt) {
 
 		grunt.log.writeln(`Replacing main.js with app.min.js in ${file}.`);
 
-		html = html.replace(/\bmain\.js\b/, 'main.min.js');
+		html = html.replace(/\bmain\.js\b/, 'app.min.js');
 
 		grunt.file.write(file, html);
 	}
