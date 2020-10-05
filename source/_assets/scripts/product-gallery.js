@@ -120,9 +120,25 @@ class ProductGallery {
 		idElement.textContent = data.id;
 		nameElement.textContent = data.name;
 		infoElement.textContent = 'number of images: ' + data.images.length;
-		priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.price.regular) + ', currently ' + Utilities.formatPrice(data.price.selling) + ', ' + data.price.type;
+
+		if (data.price) {
+
+			priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.price.regular) + ', currently ' + Utilities.formatPrice(data.price.selling) + ', ' + data.price.type;
+		}
+
+		else if (data.priceRange) {
+
+			priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.priceRange.regular.low) + ' to ' + Utilities.formatPrice(data.priceRange.regular.high) + ', currently ' + Utilities.formatPrice(data.priceRange.selling.low) + ' to ' + Utilities.formatPrice(data.priceRange.selling.high) + ', ' + data.priceRange.type;
+		}
+
+		else {
+
+			// TODO: Consider hiding the price element when the price is unknown.
+			priceElement.textContent = 'to be announced';
+		}
+
 		productURLElement.textContent = data.links.www;
-	
+
 		// TODO: Check whether any images actually exist then respond accordingly.
 	
 		for (let i = 0; i < data.images.length; i++) {
