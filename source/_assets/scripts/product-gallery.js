@@ -49,9 +49,9 @@ class ProductGallery {
 
 		let productMenu = document.getElementById('product-menu');
 
-		let productList = productMenu.querySelector('.products');
+		let productsElement = productMenu.querySelector('.products');
 
-		let template = productList.querySelector('template');
+		let template = productsElement.querySelector('template');
 
 		data.forEach(product => {
 
@@ -67,7 +67,74 @@ class ProductGallery {
 
 			imageElement.addEventListener('click', () => this.showProduct(product));
 
-			productList.appendChild(clone);
+			let nameElement = clone.querySelector('.product-name');
+
+			nameElement.textContent = product.name;
+
+			let regularPriceElement = clone.querySelector('.regular-price');
+			let currentPriceElement = clone.querySelector('.current-price');
+
+			let onSpecial = (product.price && product.price.type === 'special') || (product.priceRange && product.priceRange.type === 'special');
+
+			// TODO: Find out which fields are meant to be provided when a product does NOT have special pricing.
+
+			// regular price
+
+			if (product.price && product.price.regular) {
+
+				let prefix = (onSpecial ? '<del>' : '');
+				let suffix = (onSpecial ? '</del>' : '');
+
+				regularPriceElement.innerHTML = prefix + Utilities.formatPrice(product.price.regular) + suffix;
+			}
+
+			else if (product.priceRange && product.priceRange.regular && product.priceRange.regular.low && product.priceRange.regular.high) {
+
+				let prefix = (onSpecial ? '<del>' : '');
+				let suffix = (onSpecial ? '</del>' : '');
+
+				regularPriceElement.innerHTML = prefix + Utilities.formatPrice(product.priceRange.regular.low) + '–' + Utilities.formatPrice(product.priceRange.regular.high) + suffix;
+			}
+
+			else {
+
+				regularPriceElement.remove();
+			}
+
+			// selling price
+
+			if (product.price && product.price.selling) {
+
+				currentPriceElement.textContent = Utilities.formatPrice(product.price.selling);
+			}
+
+			else if (product.priceRange && product.priceRange.selling && product.priceRange.selling.low && product.priceRange.selling.high) {
+	
+				currentPriceElement.textContent = Utilities.formatPrice(product.priceRange.selling.low) + '–' + Utilities.formatPrice(product.priceRange.selling.high);
+			}
+
+			else
+			{
+				currentPriceElement.remove();
+			}
+
+			// product page link
+
+			let detailsElement = clone.querySelector('.details a');
+			let detailsLink = clone.querySelector('.details a');
+
+			if (product.links && product.links.www) {
+
+				detailsLink.setAttribute('href', product.links.www);
+				detailsLink.setAttribute('title', product.name);	
+			}
+
+			else {
+
+				detailsElement.remove();
+			}
+
+			productsElement.appendChild(clone);
 		});
 	}
 

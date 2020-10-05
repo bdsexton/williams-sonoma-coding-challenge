@@ -170,27 +170,35 @@ main > section
 #product-menu > .products
 {
 	display: grid;
-	gap: 1rem;
-	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-
-	list-style-type: none;
-
-	padding: 0
+	gap: 2rem;
+	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr))
 }
 
-#product-menu > .products img
+#product-menu > .products .product-card img
 {
 	display: block;
 
-	margin: 0;
+	margin: 0
+}
+
+#product-menu > .products .product-card .product-image
+{
+	width: 100%;
+	height: auto;
 
 	cursor: pointer
 }
 
-#product-menu > .products li img
+#product-menu > .products .regular-price
 {
-	width: 100%;
-	height: auto
+	color: #555;
+
+	font-size: 0.75em
+}
+
+#product-menu > .products .product-card > :last-child
+{
+	margin-bottom: 0
 }
 
 /*----------------------------------------------------------------------------*\
