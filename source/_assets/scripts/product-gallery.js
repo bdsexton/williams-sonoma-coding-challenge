@@ -71,24 +71,51 @@ class ProductGallery {
 
 		let productBrowser = template.content.cloneNode(true).querySelector('.product-browser');
 
-		let idElement = productBrowser.querySelector('.product-id');
-		let imageElement = productBrowser.querySelector('.product-image');
-		let infoElement = productBrowser.querySelector('.product-info');
-		let nameElement = productBrowser.querySelector('.product-name');
-		let priceElement = productBrowser.querySelector('.product-price');
-		let productImagesElement = productBrowser.querySelector('.product-images');
-		let productURLElement = productBrowser.querySelector('.product-url');
+		// header element variables
+
+		let headerImageElement = productBrowser.querySelector('header .product-image');
+		let headerNameElement = productBrowser.querySelector('header .product-name');
+		let headerCloseButton = productBrowser.querySelector('header .close-button');
+
+		// body element variables
+
+		let idElement = productBrowser.querySelector('.body .product-id');
+		let imageElement = productBrowser.querySelector('.body .product-image');
+		let infoElement = productBrowser.querySelector('.body .product-info');
+		let priceElement = productBrowser.querySelector('.body .product-price');
+		let productImagesElement = productBrowser.querySelector('.body .product-images');
+		let productURLElement = productBrowser.querySelector('.body .product-url');
 	
 		let imageListItem;
 		let listImage;
 	
+		// Build the header.
+
+		headerImageElement.setAttribute('src', data.hero.href);
+		headerImageElement.setAttribute('alt', data.alt || data.name);
+		headerImageElement.setAttribute('width', data.width);
+		headerImageElement.setAttribute('height', data.height);
+
+		headerNameElement.textContent = data.name;
+
+		headerCloseButton.addEventListener('click', () => {
+
+			let overlay = productBrowser.closest('.overlay');
+
+			if (overlay) {
+
+				overlay.remove();
+			}
+		});
+
+		// Build the content.
+
 		imageElement.setAttribute('src', data.hero.href);
 		imageElement.setAttribute('alt', data.alt || data.name);
 		imageElement.setAttribute('width', data.width);
 		imageElement.setAttribute('height', data.height);
 	
 		idElement.textContent = data.id;
-		nameElement.textContent = data.name;
 		infoElement.textContent = 'number of images: ' + data.images.length;
 
 		if (data.price) {
