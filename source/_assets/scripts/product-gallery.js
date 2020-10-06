@@ -178,7 +178,7 @@ class ProductGallery {
 
 		else {
 
-			productPageLink.remove();
+			productPageLink.parentElement().remove();
 		}
 
 		return productBrowser;
