@@ -45,6 +45,24 @@ class ProductGallery {
 		}
 	}
 
+	addOverlay() {
+
+		let template = document.getElementById('overlay-template');
+
+		let overlay = template.content.cloneNode(true).querySelector('.overlay');
+
+		let backdrop = overlay.querySelector('.backdrop');
+
+		backdrop.addEventListener('click', () => {
+
+			overlay.remove();
+		});
+
+		document.body.appendChild(overlay);
+
+		return overlay;
+	}
+
 	buildProductMenu(data) {
 
 		let productMenu = document.getElementById('product-menu');
