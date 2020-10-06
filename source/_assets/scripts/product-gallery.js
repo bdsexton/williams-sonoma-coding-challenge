@@ -82,7 +82,6 @@ class ProductGallery {
 		let imageElement = productBrowser.querySelector('.body .product-image');
 		let priceElement = productBrowser.querySelector('.body .product-price');
 		let productImagesElement = productBrowser.querySelector('.body .product-images');
-		let productURLElement = productBrowser.querySelector('.body .product-url');
 	
 		let imageListItem;
 		let listImage;
@@ -141,8 +140,6 @@ class ProductGallery {
 			priceElement.textContent = 'to be announced';
 		}
 
-		productURLElement.textContent = data.links.www;
-
 		// TODO: Check whether any images actually exist then respond accordingly.
 	
 		for (let i = 0; i < data.images.length; i++) {
@@ -168,7 +165,22 @@ class ProductGallery {
 	
 			productImagesElement.appendChild(imageListItem);
 		}
-	
+
+		// product page link
+
+		let productPageLink = productBrowser.querySelector('.body .product-page-link a');
+
+		if (data.links && data.links.www) {
+
+			productPageLink.setAttribute('href', data.links.www);
+			productPageLink.setAttribute('title', data.name);
+		}
+
+		else {
+
+			productPageLink.remove();
+		}
+
 		return productBrowser;
 	}
 
