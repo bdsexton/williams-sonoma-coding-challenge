@@ -447,6 +447,18 @@ main > section
 	cursor: pointer
 }
 
+.product-browser .body .product-page-link
+{
+	font-size: 0.75em;
+
+	margin: 0.5rem 0 0 0
+}
+
+.product-browser .body > :last-child
+{
+	margin-bottom: 0
+}
+
 /*----------------------------------------------------------------------------*\
 	Content - Product Details and Source Code
 \*----------------------------------------------------------------------------*/
