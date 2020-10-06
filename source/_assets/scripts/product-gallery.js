@@ -271,18 +271,17 @@ class ProductGallery {
 
 			// product page link
 
-			let detailsElement = clone.querySelector('.details a');
-			let detailsLink = clone.querySelector('.details a');
+			let productPageLink = clone.querySelector('.product-card .product-page-link a');
 
 			if (product.links && product.links.www) {
 
-				detailsLink.setAttribute('href', product.links.www);
-				detailsLink.setAttribute('title', product.name);	
+				productPageLink.setAttribute('href', product.links.www);
+				productPageLink.setAttribute('title', product.name);	
 			}
 
 			else {
 
-				detailsElement.remove();
+				productPageLink.parentElement.remove();
 			}
 
 			productsElement.appendChild(clone);
