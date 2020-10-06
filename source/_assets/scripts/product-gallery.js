@@ -153,6 +153,14 @@ class ProductGallery {
 			listImage.setAttribute('width', data.images[i].width);
 			listImage.setAttribute('height', data.images[i].height);
 	
+			listImage.addEventListener('click', () => {
+
+				imageElement.setAttribute('src', data.images[i].href);
+				imageElement.setAttribute('alt', data.images[i].alt || data.name);
+				imageElement.setAttribute('width', data.images[i].width);
+				imageElement.setAttribute('height', data.images[i].height);
+			});
+
 			imageListItem.appendChild(listImage);
 	
 			productImagesElement.appendChild(imageListItem);

@@ -440,7 +440,9 @@ main > section
 .product-browser .product-images li img
 {
 	width: 100%;
-	height: auto
+	height: auto;
+
+	cursor: pointer
 }
 
 /*----------------------------------------------------------------------------*\
