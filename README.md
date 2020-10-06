@@ -18,7 +18,7 @@ Skipping frameworks is one way to avoid bloated code and larger than necessary d
 
 The easiest way to see my solution running is by loading the [live demo](https://bdsexton.github.io/williams-sonoma-coding-challenge/) hosted by GitHub Pages.
 
-You can also view, clone, and download the [project repository](https://github.com/bdsexton/williams-sonoma-coding-challenge/) via GitHub.
+You can also view, clone, and download the [project repository](https://github.com/bdsexton/williams-sonoma-coding-challenge) via GitHub.
 
 ### Project Dependencies
 
@@ -58,7 +58,7 @@ grunt build
 
 ## Data Source
 
-The [product data feed](https://www.westelm.com/services/catalog/v4/category/shop/new/all-new/index.json) specified in the project brief is served without an Access-Control-Allow-Origin response header, so it cannot be used directly per Cross-Origin Resource Sharing (CORS) restrictions. As a work-around, I have cached the feed data as a static file in the [project repository](https://github.com/bdsexton/williams-sonoma-coding-challenge/) and deployed the app via GitHub Pages, which does send the necessary header.
+The [product data feed](https://www.westelm.com/services/catalog/v4/category/shop/new/all-new/index.json) specified in the project brief is served without an Access-Control-Allow-Origin response header, so it cannot be used directly per Cross-Origin Resource Sharing (CORS) restrictions. As a work-around, I have cached the feed data as a static file in the [project repository](https://github.com/bdsexton/williams-sonoma-coding-challenge) and deployed the app via GitHub Pages, which does send the necessary header.
 
 To enable [deployment](https://bdsexton.github.io/williams-sonoma-coding-challenge/_assets/data/products.json) via GitHub Pages there is a copy of the data feed file in both the <code>source</code> directory and the <code>docs</code> directory.
 
