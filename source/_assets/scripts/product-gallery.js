@@ -91,10 +91,14 @@ class ProductGallery {
 	
 		// Build the header.
 
+		// Note: Header image element dimensions are omitted here because the
+		// image and the CSS that overrides its natural size are both already
+		// loaded by the time a dynamically added overlay is shown, so the
+		// browser no longer needs HTML attribute values as hints to reserve
+		// layout space.
+
 		headerImageElement.setAttribute('src', data.hero.href);
-		headerImageElement.setAttribute('alt', data.alt || data.name);
-		headerImageElement.setAttribute('width', data.width);
-		headerImageElement.setAttribute('height', data.height);
+		headerImageElement.setAttribute('alt', data.hero.alt || data.name);
 
 		headerNameElement.textContent = data.name;
 
@@ -111,9 +115,9 @@ class ProductGallery {
 		// Build the content.
 
 		imageElement.setAttribute('src', data.hero.href);
-		imageElement.setAttribute('alt', data.alt || data.name);
-		imageElement.setAttribute('width', data.width);
-		imageElement.setAttribute('height', data.height);
+		imageElement.setAttribute('alt', data.hero.alt || data.name);
+		imageElement.setAttribute('width', data.hero.width);
+		imageElement.setAttribute('height', data.hero.height);
 	
 		idElement.textContent = data.id;
 		infoElement.textContent = 'number of images: ' + data.images.length;
