@@ -444,6 +444,31 @@ main > section
 }
 
 /*----------------------------------------------------------------------------*\
+	Content - Product Details and Source Code
+\*----------------------------------------------------------------------------*/
+
+#project-details-and-source-code
+{
+	margin: 2rem auto
+}
+
+/* Hide the section heading for screen and print, but NOT for speech. */
+@media screen, print
+{
+	#project-details-and-source-code > h3
+	{
+		display: none
+	}
+}
+
+#project-details-and-source-code > p
+{
+	color: #333;
+
+	text-align: center;
+}
+
+/*----------------------------------------------------------------------------*\
 	Page Footer
 \*----------------------------------------------------------------------------*/
 
