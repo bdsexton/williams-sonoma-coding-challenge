@@ -31,20 +31,6 @@
 				</template>
 			</div>
 		</section>
-		<section id="product-browser">
-			<h3>Product Browser</h3>
-			<template>
-				<div class="product">
-					<img class="product-image">
-					<p class="product-info"></p>
-					<ul class="product-images"></ul>
-					<h4 class="product-name"></h4>
-					<p class="product-id"></p>
-					<p class="product-price"></p>
-					<p class="product-url"></p>
-				</div>
-			</template>
-		</section>
 	</main>
 	<footer>
 		<ul class="personal-links">
@@ -61,6 +47,22 @@
 		<div class="overlay">
 			<div class="backdrop"></div>
 			<div class="content"></div>
+		</div>
+	</template>
+	<template id="product-browser-template">
+		<div class="product-browser">
+			<header>
+				<img class="featured-product-image">
+				<h3 class="product-name"></h3>
+			</header>
+			<div class="body">
+				<img class="product-image">
+				<p class="product-info"></p>
+				<ul class="product-images"></ul>
+				<p class="product-id"></p>
+				<p class="product-price"></p>
+				<p class="product-url"></p>
+			</div>
 		</div>
 	</template>
 </body>

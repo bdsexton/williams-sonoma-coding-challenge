@@ -63,6 +63,85 @@ class ProductGallery {
 		return overlay;
 	}
 
+	buildProductBrowser(data) {
+
+		// TODO: Consider passing a reference to all of the loaded data to facilitate easy navigation.
+
+		let template = document.getElementById('product-browser-template');
+
+		let productBrowser = template.content.cloneNode(true).querySelector('.product-browser');
+
+		let idElement = productBrowser.querySelector('.product-id');
+		let imageElement = productBrowser.querySelector('.product-image');
+		let infoElement = productBrowser.querySelector('.product-info');
+		let nameElement = productBrowser.querySelector('.product-name');
+		let priceElement = productBrowser.querySelector('.product-price');
+		let productImagesElement = productBrowser.querySelector('.product-images');
+		let productURLElement = productBrowser.querySelector('.product-url');
+	
+		let imageListItem;
+		let listImage;
+	
+		imageElement.setAttribute('src', data.hero.href);
+		imageElement.setAttribute('alt', data.alt || data.name);
+		imageElement.setAttribute('width', data.width);
+		imageElement.setAttribute('height', data.height);
+	
+		idElement.textContent = data.id;
+		nameElement.textContent = data.name;
+		infoElement.textContent = 'number of images: ' + data.images.length;
+
+		if (data.price) {
+
+			priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.price.regular) + ', currently ' + Utilities.formatPrice(data.price.selling) + ', ' + data.price.type;
+		}
+
+		else if (data.priceRange) {
+
+			priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.priceRange.regular.low) + ' to ' + Utilities.formatPrice(data.priceRange.regular.high) + ', currently ' + Utilities.formatPrice(data.priceRange.selling.low) + ' to ' + Utilities.formatPrice(data.priceRange.selling.high) + ', ' + data.priceRange.type;
+		}
+
+		else {
+
+			// TODO: Consider hiding the price element when the price is unknown.
+			priceElement.textContent = 'to be announced';
+		}
+
+		productURLElement.textContent = data.links.www;
+
+		// TODO: Check whether any images actually exist then respond accordingly.
+	
+		for (let i = 0; i < data.images.length; i++) {
+	
+			imageListItem = document.createElement('li');
+	
+			listImage = document.createElement('img');
+	
+			listImage.setAttribute('src', data.images[i].href);
+			listImage.setAttribute('alt', data.images[i].alt || data.name);
+			listImage.setAttribute('width', data.images[i].width);
+			listImage.setAttribute('height', data.images[i].height);
+	
+			imageListItem.appendChild(listImage);
+	
+			productImagesElement.appendChild(imageListItem);
+		}
+	
+		return productBrowser;
+	}
+
+	hideProductMenu(clear) {
+
+		let productMenu = document.getElementById('product-menu');
+
+		if (clear === true) {
+
+			this.clearProductMenu();
+		}
+
+		productMenu.style.display = 'none';
+	}
+
 	buildProductMenu(data) {
 
 		let productMenu = document.getElementById('product-menu');
@@ -156,16 +235,6 @@ class ProductGallery {
 		});
 	}
 
-	clearProductBrowser() {
-
-		let productElements = document.querySelectorAll('#product-browser .product');
-
-		productElements.forEach(element => {
-
-			element.parentElement.removeChild(element);
-		});
-	}
-
 	clearProductMenu() {
 
 		let productElements = document.querySelectorAll('#product-menu .products li');
@@ -174,87 +243,6 @@ class ProductGallery {
 
 			element.parentElement.removeChild(element);
 		});
-	}
-
-	displayProductInfo(data) {
-
-		// TODO: Consider passing a reference to all of the loaded data to facilitate easy navigation.
-	
-		let productBrowser = document.getElementById('product-browser');
-	
-		let template = productBrowser.querySelector('template');
-	
-		let clone = template.content.cloneNode(true);
-	
-		let idElement = clone.querySelector('.product-id');
-		let imageElement = clone.querySelector('.product-image');
-		let infoElement = clone.querySelector('.product-info');
-		let nameElement = clone.querySelector('.product-name');
-		let priceElement = clone.querySelector('.product-price');
-		let productImagesElement = clone.querySelector('.product-images');
-		let productURLElement = clone.querySelector('.product-url');
-	
-		let imageListItem;
-		let listImage;
-	
-		imageElement.setAttribute('src', data.hero.href);
-		imageElement.setAttribute('alt', data.alt || data.name);
-		imageElement.setAttribute('width', data.width);
-		imageElement.setAttribute('height', data.height);
-	
-		idElement.textContent = data.id;
-		nameElement.textContent = data.name;
-		infoElement.textContent = 'number of images: ' + data.images.length;
-
-		if (data.price) {
-
-			priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.price.regular) + ', currently ' + Utilities.formatPrice(data.price.selling) + ', ' + data.price.type;
-		}
-
-		else if (data.priceRange) {
-
-			priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.priceRange.regular.low) + ' to ' + Utilities.formatPrice(data.priceRange.regular.high) + ', currently ' + Utilities.formatPrice(data.priceRange.selling.low) + ' to ' + Utilities.formatPrice(data.priceRange.selling.high) + ', ' + data.priceRange.type;
-		}
-
-		else {
-
-			// TODO: Consider hiding the price element when the price is unknown.
-			priceElement.textContent = 'to be announced';
-		}
-
-		productURLElement.textContent = data.links.www;
-
-		// TODO: Check whether any images actually exist then respond accordingly.
-	
-		for (let i = 0; i < data.images.length; i++) {
-	
-			imageListItem = document.createElement('li');
-	
-			listImage = document.createElement('img');
-	
-			listImage.setAttribute('src', data.images[i].href);
-			listImage.setAttribute('alt', data.images[i].alt || data.name);
-			listImage.setAttribute('width', data.images[i].width);
-			listImage.setAttribute('height', data.images[i].height);
-	
-			imageListItem.appendChild(listImage);
-	
-			productImagesElement.appendChild(imageListItem);
-		}
-	
-		productBrowser.appendChild(clone);
-	}
-
-	hideProductMenu(clear) {
-
-		let productMenu = document.getElementById('product-menu');
-
-		if (clear === true) {
-
-			this.clearProductMenu();
-		}
-
-		productMenu.style.display = 'none';
 	}
 
 	async loadFeed(url) {
@@ -292,9 +280,17 @@ class ProductGallery {
 
 	showProduct(product) {
 
-		this.clearProductBrowser();
+		// Add a new overlay.
 
-		this.displayProductInfo(product);
+		let overlay = this.addOverlay();
+
+		overlay.classList.add('product-image-overlay');
+
+		// Build a new product browser then put it in the new overlay.
+
+		let productBrowser = this.buildProductBrowser(product);
+
+		overlay.querySelector('.content').appendChild(productBrowser);
 	}
 
 	showProductMenu(data) {

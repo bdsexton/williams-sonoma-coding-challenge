@@ -202,38 +202,93 @@ main > section
 }
 
 /*----------------------------------------------------------------------------*\
+	Content - Product Image Overlay
+\*----------------------------------------------------------------------------*/
+
+.product-image-overlay
+{
+	position: fixed;
+
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+
+	backdrop-filter: brightness(80%) blur(24px);
+
+	display: flex;
+	align-items: center;
+	justify-content: center
+}
+
+.product-image-overlay > .backdrop
+{
+	background-color: rgba(0, 0, 0, 0.5);
+
+	position: absolute;
+
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+
+	z-index: -1;
+
+	cursor: pointer
+}
+
+.product-image-overlay > .content
+{
+	max-height: 100%;
+}
+
+/*----------------------------------------------------------------------------*\
 	Content - Product Browser
 \*----------------------------------------------------------------------------*/
 
-/* Hide the section heading for screen and print, but NOT for speech. */
-@media screen, print
+.product-browser
 {
-	#product-browser > h3
-	{
-		display: none
-	}
+	background-color: #fff;
+
+	box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
 }
 
-#product-browser > .product
-{
-	border: 1px solid #777;
-	border-radius: 0.25rem;
-
-	background-color: #eee;
-
-	padding: 1rem;
-
-	margin: 1rem 0 0 0
-}
-
-#product-browser > .product img
+.product-browser img
 {
 	display: block;
 
 	margin: 0
 }
 
-#product-browser > .product .product-images
+.product-browser > header
+{
+	background-color: #d4b746;
+	color: #222;
+
+	padding: 1rem
+}
+
+
+.product-browser > header > h3
+{
+	margin: 0
+}
+
+.product-browser > .body
+{
+	background-color: #fff;
+
+	padding: 1rem
+}
+
+.product-browser > .body > :last-child
+{
+	margin-bottom: 0
+}
+
+.product-browser .product-images
 {
 	display: grid;
 	gap: 1rem;
@@ -244,7 +299,7 @@ main > section
 	padding: 0
 }
 
-#product-browser > .product .product-images li img
+.product-browser .product-images li img
 {
 	width: 100%;
 	height: auto
