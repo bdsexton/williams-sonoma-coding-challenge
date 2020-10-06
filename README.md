@@ -36,6 +36,26 @@ Project-specific development dependencies may be installed from the repository's
 npm install
 ```
 
+### Building the Project
+
+Actually building the project is easy:
+
+```bash
+grunt
+```
+
+The default task will clean out the <code>docs</code> directory then build a fresh copy of the project there. By the way, if that seems like a strange location for builds that's because it is! GitHub Pages uses that directory for deployments.
+
+You can also run the <code>clean</code> and <code>build</code> tasks separately if you like:
+
+```bash
+grunt clean
+```
+
+```bash
+grunt build
+```
+
 ## Data Source
 
 The [product data feed](https://www.westelm.com/services/catalog/v4/category/shop/new/all-new/index.json) specified in the project brief is served without an Access-Control-Allow-Origin response header, so it cannot be used directly per Cross-Origin Resource Sharing (CORS) restrictions. As a work-around, I have cached the feed data as a static file in the [project repository](https://github.com/bdsexton/williams-sonoma-coding-challenge/) and deployed the app via GitHub Pages, which does send the necessary header.
