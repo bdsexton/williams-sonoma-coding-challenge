@@ -100,6 +100,14 @@ class ProductGallery {
 		headerImageElement.setAttribute('src', data.hero.href);
 		headerImageElement.setAttribute('alt', data.hero.alt || data.name);
 
+		headerImageElement.addEventListener('click', () => {
+
+			imageElement.setAttribute('src', data.hero.href);
+			imageElement.setAttribute('alt', data.hero.alt || data.name);
+			imageElement.setAttribute('width', data.hero.width);
+			imageElement.setAttribute('height', data.hero.height);
+		});
+
 		headerNameElement.textContent = data.name;
 
 		headerCloseButton.addEventListener('click', () => {
