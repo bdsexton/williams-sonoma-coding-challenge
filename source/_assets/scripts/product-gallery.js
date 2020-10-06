@@ -79,9 +79,7 @@ class ProductGallery {
 
 		// body element variables
 
-		let idElement = productBrowser.querySelector('.body .product-id');
 		let imageElement = productBrowser.querySelector('.body .product-image');
-		let infoElement = productBrowser.querySelector('.body .product-info');
 		let priceElement = productBrowser.querySelector('.body .product-price');
 		let productImagesElement = productBrowser.querySelector('.body .product-images');
 		let productURLElement = productBrowser.querySelector('.body .product-url');
@@ -120,16 +118,13 @@ class ProductGallery {
 			}
 		});
 
-		// Build the content.
+		// Build the body.
 
 		imageElement.setAttribute('src', data.hero.href);
 		imageElement.setAttribute('alt', data.hero.alt || data.name);
 		imageElement.setAttribute('width', data.hero.width);
 		imageElement.setAttribute('height', data.hero.height);
 	
-		idElement.textContent = data.id;
-		infoElement.textContent = 'number of images: ' + data.images.length;
-
 		if (data.price) {
 
 			priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.price.regular) + ', currently ' + Utilities.formatPrice(data.price.selling) + ', ' + data.price.type;
