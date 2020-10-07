@@ -360,6 +360,8 @@ main > section
 	margin: 0
 }
 
+/* product browser header */
+
 .product-browser > header
 {
 	background-color: #d4b746;
@@ -393,7 +395,7 @@ main > section
 {
 	flex: 1;
 
-	margin: 0.2rem 0 0 0.75rem
+	margin: 0.2rem 0.75rem 0 0.75rem
 }
 
 .product-browser > header .close-button-box
@@ -416,6 +418,8 @@ main > section
 	cursor: pointer
 }
 
+/* product browser body */
+
 .product-browser > .body
 {
 	background-color: #fff;
@@ -423,12 +427,7 @@ main > section
 	padding: 1rem
 }
 
-.product-browser > .body > :last-child
-{
-	margin-bottom: 0
-}
-
-.product-browser .product-images
+.product-browser > .body .product-images
 {
 	display: grid;
 	gap: 1rem;
@@ -439,7 +438,7 @@ main > section
 	padding: 0
 }
 
-.product-browser .product-images li img
+.product-browser > .body .product-images li img
 {
 	width: 100%;
 	height: auto;
@@ -447,14 +446,28 @@ main > section
 	cursor: pointer
 }
 
-.product-browser .body .product-page-link
+.product-browser > .body .regular-price
+{
+	color: #555;
+
+	font-size: 0.75em;
+
+	margin: 0.5rem 0 0.25em 0
+}
+
+.product-browser > .body .current-price
+{
+	margin: 0.25rem 0 0.5em 0
+}
+
+.product-browser > .body .product-page-link
 {
 	font-size: 0.75em;
 
 	margin: 0.5rem 0 0 0
 }
 
-.product-browser .body > :last-child
+.product-browser > .body > :last-child
 {
 	margin-bottom: 0
 }
