@@ -80,7 +80,6 @@ class ProductGallery {
 		// body element variables
 
 		let imageElement = productBrowser.querySelector('.body .product-image');
-		let priceElement = productBrowser.querySelector('.body .product-price');
 		let productImagesElement = productBrowser.querySelector('.body .product-images');
 	
 		let imageListItem;
@@ -123,22 +122,8 @@ class ProductGallery {
 		imageElement.setAttribute('alt', data.hero.alt || data.name);
 		imageElement.setAttribute('width', data.hero.width);
 		imageElement.setAttribute('height', data.hero.height);
-	
-		if (data.price) {
 
-			priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.price.regular) + ', currently ' + Utilities.formatPrice(data.price.selling) + ', ' + data.price.type;
-		}
-
-		else if (data.priceRange) {
-
-			priceElement.textContent = 'regularly ' + Utilities.formatPrice(data.priceRange.regular.low) + ' to ' + Utilities.formatPrice(data.priceRange.regular.high) + ', currently ' + Utilities.formatPrice(data.priceRange.selling.low) + ' to ' + Utilities.formatPrice(data.priceRange.selling.high) + ', ' + data.priceRange.type;
-		}
-
-		else {
-
-			// TODO: Consider hiding the price element when the price is unknown.
-			priceElement.textContent = 'to be announced';
-		}
+		this.updatePriceElements(productBrowser.querySelector('.body'), data);
 
 		// TODO: Check whether any images actually exist then respond accordingly.
 	
