@@ -4,7 +4,7 @@ This is my solution to a coding challenge from Williams Sonoma. You can view the
 
 ## :warning: Tuesday, October 6, 2020 Status Note - IMPORTANT!
 
-The overlays are rather borked right now. I'm working on it! Please check back later today or tomorrow.
+Everything works, but I'm still improving things. For example, I plan to tighten up the layout in the overlay and add another transition or two. After those things I may turn my attention to testing and code quality improvements. Please feel free to check back for updates soon.
 
 ## My Approach
 
