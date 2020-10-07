@@ -432,6 +432,12 @@ main > section
 	padding: 1rem
 }
 
+.product-browser > .body > .product-image
+{
+	max-width: 100%;
+	height: auto
+}
+
 .product-browser > .body .product-images
 {
 	display: grid;
